@@ -25,12 +25,8 @@ const Sponsees: CollectionConfig = {
       options: ['KG', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
     },
     {
-      name: 'aspiration',
-      type: 'text',
-    },
-    {
       name: 'bio',
-      type: 'richText',
+      type: 'textarea',
     },
     {
       name: 'dateOfBirth',
@@ -46,14 +42,12 @@ const Sponsees: CollectionConfig = {
       type: 'select',
       options: ['Mother & Father', 'Mother', 'Father', 'Guardian'],
     },
-
     {
-        name: 'Gallery',
-        type: 'upload', // required
-        relationTo: 'media', // required
-        maxDepth: 1
-        ,
-      },
+      name: 'sponseeGallery',
+      type: 'relationship',
+      relationTo: 'gallery',
+    },
+
   ],
   timestamps: true,
 }

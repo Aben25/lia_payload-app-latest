@@ -10,9 +10,23 @@ import Sponsees from './collections/Sponsees'
 import Sponsors from './collections/Sponsors'
 import { s3Storage } from '@payloadcms/storage-s3'
 import Gallery from './collections/Gallery'
+import slugify from 'slugify' // You might need to install this package: npm install slugify
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+const sanitizeFilename = (filename: string): string => {
+  // Remove the file extension
+  const parts = filename.split('.')
+  const ext = parts.pop()
+  const name = parts.join('.')
+
+  // Sanitize the filename
+  const sanitized = slugify(name, { lower: true, strict: true })
+
+  // Reattach the extension
+  return `${sanitized}.${ext}`
+}
 
 export default buildConfig({
   admin: {
@@ -38,6 +52,7 @@ export default buildConfig({
       collections: {
         media: {
           prefix: 'media1',
+          generateFileURL: ({ filename }) => `https://${process.env.S3_BUCKET}.s3.amazonaws.com/media1/${sanitizeFilename(filename)}`,
         }
       },
       bucket: process.env.S3_BUCKET || '',

@@ -89,53 +89,15 @@ export interface Media {
  */
 export interface Sponsee {
   id: number;
-  fullName: string;
-  gender: 'Male' | 'Female';
-  location: string;
+  fullName?: string | null;
+  gender?: ('Male' | 'Female') | null;
+  location?: string | null;
   grade?: ('KG' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12') | null;
-  aspiration?: string | null;
-  bio?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  bio?: string | null;
   dateOfBirth?: string | null;
   profile?: (number | null) | Media;
   parentInfo?: ('Mother & Father' | 'Mother' | 'Father' | 'Guardian') | null;
-  Gallery?: (number | null) | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sponsors".
- */
-export interface Sponsor {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  amount: number;
-  firstPaymentDate: string;
-  lastPaymentDate: string;
-  language: 'EN' | 'AM';
-  address?: string | null;
-  city?: string | null;
-  postalCode?: string | null;
-  country?: string | null;
-  region?: string | null;
-  phone?: string | null;
-  sponsee?: (number | null) | Sponsee;
+  sponseeGallery?: (number | null) | Gallery;
   updatedAt: string;
   createdAt: string;
 }
@@ -157,6 +119,28 @@ export interface Gallery {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sponsors".
+ */
+export interface Sponsor {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email?: string | null;
+  amount?: number | null;
+  firstPaymentDate?: string | null;
+  lastPaymentDate?: string | null;
+  address?: string | null;
+  city?: string | null;
+  postalCode?: string | null;
+  country?: string | null;
+  region?: string | null;
+  phone?: string | null;
+  sponsee?: (number | Sponsee)[] | null;
   updatedAt: string;
   createdAt: string;
 }
