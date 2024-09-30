@@ -41,7 +41,7 @@ export default buildConfig({
           prefix: 'media1',
         }
       },
-      bucket: process.env.S3_BUCKET,
+      bucket: process.env.S3_BUCKET || 'default-bucket-name',
       config: {
         forcePathStyle: true,
         credentials: {
