@@ -1,33 +1,56 @@
-import path from 'path'
-
-import { payloadCloud } from '@payloadcms/plugin-cloud'
+// storage-adapter-import-placeholder
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { webpackBundler } from '@payloadcms/bundler-webpack'
-import { slateEditor } from '@payloadcms/richtext-slate'
-import { buildConfig } from 'payload/config'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import path from 'path'
+import { buildConfig } from 'payload'
+import { fileURLToPath } from 'url'
+import sharp from 'sharp'
+import { Users } from './collections/Users'
+import { Media } from './collections/Media'
+import Sponsees from './collections/Sponsees'
+import Sponsors from './collections/Sponsors'
 import { s3Storage } from '@payloadcms/storage-s3'
+import Gallery from './collections/Gallery'
 
-import Users from './collections/Users'
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
     user: Users.slug,
-    bundler: webpackBundler(),
+    importMap: {
+      baseDir: path.resolve(dirname),
+    },
   },
-  editor: slateEditor({}),
-  collections: [Users],
+  collections: [Users, Media, Sponsees, Sponsors, Gallery],
+  editor: lexicalEditor(),
+  secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
-    outputFile: path.resolve(__dirname, 'payload-types.ts'),
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  graphQL: {
-    schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
-  },
-  plugins: [payloadCloud()],
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI,
+      connectionString: process.env.DATABASE_URI || '',
     },
-    
   }),
-  
+  sharp,
+  plugins: [
+    s3Storage({
+      collections: {
+        media: {
+          prefix: 'media1',
+        }
+      },
+      bucket: process.env.S3_BUCKET,
+      config: {
+        forcePathStyle: true,
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+        },
+        region: process.env.S3_REGION,
+        endpoint: process.env.S3_ENDPOINT,
+      },
+    }),
+  ],
 })
