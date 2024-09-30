@@ -19,30 +19,20 @@ const Sponsors: CollectionConfig = {
     {
       name: 'email',
       type: 'email',
-      required: true,
-      unique: true,
     },
     {
       name: 'amount',
       type: 'number',
-      required: true,
     },
     {
       name: 'firstPaymentDate',
       type: 'date',
-      required: true,
     },
     {
       name: 'lastPaymentDate',
       type: 'date',
-      required: true,
     },
-    {
-      name: 'language',
-      type: 'select',
-      options: ['EN', 'AM'],
-      required: true,
-    },
+   
     {
       name: 'address',
       type: 'text',
@@ -71,7 +61,7 @@ const Sponsors: CollectionConfig = {
       name: 'sponsee',
       type: 'relationship',
       relationTo: 'sponsees',
-      hasMany: false,
+      hasMany: true,
     },
   ],
 };

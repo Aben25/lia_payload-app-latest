@@ -6,7 +6,6 @@ const Sponsees: CollectionConfig = {
     {
       name: 'fullName',
       type: 'text',
-      required: true,
       admin: {
         description: 'Enter the full name of the sponsee',
       },
@@ -15,12 +14,10 @@ const Sponsees: CollectionConfig = {
       name: 'gender',
       type: 'select',
       options: ['Male', 'Female'],
-      required: true,
     },
     {
       name: 'location',
       type: 'text',
-      required: true,
     },
     {
       name: 'grade',
@@ -43,28 +40,19 @@ const Sponsees: CollectionConfig = {
       name: 'profile',
       type: 'upload',
       relationTo: 'media',
-      required: true,
     },
     {
       name: 'parentInfo',
       type: 'select',
       options: ['Mother & Father', 'Mother', 'Father', 'Guardian'],
-      required: true,
     },
-    {
-      name: 'galleryUrl',
-      type: 'text',
-      admin: {
-        description: "Enter the URL for the sponsee's photo gallery",
-      },
-    },
+
     {
         name: 'Gallery',
         type: 'upload', // required
         relationTo: 'media', // required
         maxDepth: 1
         ,
-        required: true,
       },
   ],
   timestamps: true,

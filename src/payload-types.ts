@@ -110,10 +110,9 @@ export interface Sponsee {
     [k: string]: unknown;
   } | null;
   dateOfBirth?: string | null;
-  profile: number | Media;
-  parentInfo: 'Mother & Father' | 'Mother' | 'Father' | 'Guardian';
-  galleryUrl?: string | null;
-  Gallery: number | Media;
+  profile?: (number | null) | Media;
+  parentInfo?: ('Mother & Father' | 'Mother' | 'Father' | 'Guardian') | null;
+  Gallery?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
