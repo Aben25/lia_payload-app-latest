@@ -54,12 +54,12 @@ export default buildConfig({
     s3Storage({
       collections: {
         media: {
-          prefix: 'media',
-          generateFileURL: ({ filename }) => `https://${process.env.S3_BUCKET}.s3.amazonaws.com/media/${sanitizeFilename(filename)}`,
+          prefix: 'media1',
+          generateFileURL: ({ filename }) => `https://${process.env.S3_BUCKET}.s3.amazonaws.com/media1/${sanitizeFilename(filename)}`,
         },
         profilePicture: { 
-          prefix: 'profilePicture',
-          generateFileURL: ({ filename }) => `https://${process.env.S3_BUCKET}.s3.amazonaws.com/profilePicture/${sanitizeFilename(filename)}`,
+          prefix: 'profile',
+          generateFileURL: ({ filename }) => `https://${process.env.S3_BUCKET}.s3.amazonaws.com/profile/${sanitizeFilename(filename)}`,
         },
       },
       bucket: process.env.S3_BUCKET || '',
