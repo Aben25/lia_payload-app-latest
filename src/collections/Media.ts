@@ -28,15 +28,6 @@ export const Media: CollectionConfig = {
     mimeTypes: ['image/*'],
   },
   fields: [
-    {
-      name: 'alt',
-      type: 'text',
-      required: false,
-    },
-    {
-      name: 'caption',
-      type: 'text',
-      required: false,
-    },
+   
   ],
 }
