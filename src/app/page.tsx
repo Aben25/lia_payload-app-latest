@@ -1,7 +1,15 @@
-import React from 'react'
+'use client'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 
 export default function Home() {
+  // as soon as this load redirect to admin panel /admin
+  useEffect(() => {
+    window.location.href = '/admin'
+  }, [])
+
+  
+
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
       <h1>Welcome to My Payload CMS App</h1>

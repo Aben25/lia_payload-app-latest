@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload'
 const Sponsors: CollectionConfig = {
   slug: 'sponsors',
   admin: {
-    useAsTitle: 'email',
+    useAsTitle: 'firstName',
   },
   fields: [
     {

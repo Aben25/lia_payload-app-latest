@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 const Sponsees: CollectionConfig = {
   slug: 'sponsees',
+  admin: {
+    useAsTitle: 'fullName',
+  },
   fields: [
     {
       name: 'fullName',
