@@ -12,6 +12,7 @@ import { s3Storage } from '@payloadcms/storage-s3'
 import Gallery from './collections/Gallery'
 import slugify from 'slugify' // You might need to install this package: npm install slugify
 import { ProfilePicture } from './collections/ProfilePicture'
+import { profile } from 'console'
 
 
 const filename = fileURLToPath(import.meta.url)
@@ -53,9 +54,13 @@ export default buildConfig({
     s3Storage({
       collections: {
         media: {
-          prefix: 'media1',
-          generateFileURL: ({ filename }) => `https://${process.env.S3_BUCKET}.s3.amazonaws.com/media1/${sanitizeFilename(filename)}`,
-        }
+          prefix: 'media',
+          generateFileURL: ({ filename }) => `https://${process.env.S3_BUCKET}.s3.amazonaws.com/media/${sanitizeFilename(filename)}`,
+        },
+        profilePicture: { 
+          prefix: 'profilePicture',
+          generateFileURL: ({ filename }) => `https://${process.env.S3_BUCKET}.s3.amazonaws.com/profilePicture/${sanitizeFilename(filename)}`,
+        },
       },
       bucket: process.env.S3_BUCKET || '',
       config: {
