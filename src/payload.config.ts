@@ -11,6 +11,8 @@ import Sponsors from './collections/Sponsors'
 import { s3Storage } from '@payloadcms/storage-s3'
 import Gallery from './collections/Gallery'
 import slugify from 'slugify' // You might need to install this package: npm install slugify
+import { ProfilePicture } from './collections/ProfilePicture'
+
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -35,7 +37,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Sponsees, Sponsors, Gallery],
+  collections: [Users, Media, Sponsees, Sponsors, Gallery, ProfilePicture],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
