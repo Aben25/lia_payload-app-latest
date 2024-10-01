@@ -37,13 +37,13 @@ export default buildConfig({
   },
   collections: [Users, Media, Sponsees, Sponsors, Gallery],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: '999a184aee931b24ea650729',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || '',
+      connectionString: 'postgresql://postgres.ntckmekstkqxqgigqzgn:XPyeJd0BCLFrNq38@aws-0-us-west-1.pooler.supabase.com:6543/postgres',
     },
   }),
   sharp,
@@ -53,19 +53,19 @@ export default buildConfig({
         media: {
           prefix: 'media',
           generateFileURL: ({ filename }) =>
-            `https://${process.env.S3_BUCKET}.s3.amazonaws.com/media/${sanitizeFilename(filename)}`,
+            `https://Media.s3.amazonaws.com/media/${sanitizeFilename(filename)}`,
         },
        
       },
-      bucket: process.env.S3_BUCKET || '',
+      bucket: 'Media',
       config: {
         forcePathStyle: true,
         credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+          accessKeyId: '94c26e9b5a379acc48142f9c7498f973',
+          secretAccessKey: '03b9c7e3a22515e889d93d4d5820ac903c3a450490eca7027db515fe8438d6c4',
         },
-        region: process.env.S3_REGION || '',
-        endpoint: process.env.S3_ENDPOINT || '',
+        region: 'us-west-1',
+        endpoint: 'https://ntckmekstkqxqgigqzgn.supabase.co/storage/v1/s3',
       },
     }),
   ],
