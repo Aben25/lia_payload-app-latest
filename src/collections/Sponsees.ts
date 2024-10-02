@@ -1,58 +1,105 @@
-import type { CollectionConfig } from 'payload'
+import { CollectionConfig } from 'payload';
 
 const Sponsees: CollectionConfig = {
   slug: 'sponsees',
   admin: {
-    useAsTitle: 'fullName',
+    useAsTitle: 'FullName',
   },
   fields: [
     {
-      name: 'fullName',
+      name: 'FullName',
       type: 'text',
+      required: true,
+    },
+    {
+      name: 'DateOfBirth',
+      type: 'date',
       admin: {
-        description: 'Enter the full name of the sponsee',
+        date: {
+          pickerAppearance: 'dayOnly',
+        },
       },
     },
     {
-      name: 'gender',
+      name: 'Gender',
       type: 'select',
-      options: ['Male', 'Female'],
+      options: [
+        { label: 'Male', value: 'male' },
+        { label: 'Female', value: 'female' },
+        { label: 'Other', value: 'other' },
+      ],
     },
     {
-      name: 'location',
+      name: 'Location',
       type: 'text',
     },
     {
-      name: 'grade',
-      type: 'select',
-      options: ['KG', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-    },
-    {
-      name: 'bio',
+      name: 'AcademicProgress',
       type: 'textarea',
     },
     {
-      name: 'dateOfBirth',
+      name: 'LastMessage',
       type: 'date',
+      admin: {
+        date: {
+          pickerAppearance: 'dayAndTime',
+        },
+      },
     },
     {
-      name: 'profile',
+      name: 'ProfilePicture',
       type: 'upload',
       relationTo: 'media',
     },
     {
-      name: 'parentInfo',
-      type: 'select',
-      options: ['Mother & Father', 'Mother', 'Father', 'Guardian'],
-    },
-    {
-      name: 'sponseeGallery',
+      name: 'Gallery',
       type: 'relationship',
       relationTo: 'gallery',
     },
-
+    {
+      name: 'Milestones',
+      type: 'textarea',
+    },
+    {
+      name: 'ContributionsUsedFor',
+      type: 'textarea',
+    },
+    {
+      name: 'SponsorshipDuration',
+      type: 'number',
+      admin: {
+        description: 'Duration in months',
+      },
+    },
+    {
+      name: 'DonatedAmount',
+      type: 'number',
+      admin: {
+        step: 0.01,
+        description: 'Total amount donated in USD',
+      },
+    },
+    {
+      name: 'LastUpdate',
+      type: 'date',
+      admin: {
+        date: {
+          pickerAppearance: 'dayAndTime',
+        },
+      },
+    },
+    {
+      name: 'Documents',
+      type: 'array',
+      fields: [
+        {
+          name: 'document',
+          type: 'upload',
+          relationTo: 'media',
+        },
+      ],
+    },
   ],
-  timestamps: true,
-}
+};
 
-export default Sponsees
+export default Sponsees;

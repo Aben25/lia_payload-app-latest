@@ -89,15 +89,25 @@ export interface Media {
  */
 export interface Sponsee {
   id: number;
-  fullName?: string | null;
-  gender?: ('Male' | 'Female') | null;
-  location?: string | null;
-  grade?: ('KG' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12') | null;
-  bio?: string | null;
-  dateOfBirth?: string | null;
-  profile?: (number | null) | Media;
-  parentInfo?: ('Mother & Father' | 'Mother' | 'Father' | 'Guardian') | null;
-  sponseeGallery?: (number | null) | Gallery;
+  FullName: string;
+  DateOfBirth?: string | null;
+  Gender?: ('male' | 'female' | 'other') | null;
+  Location?: string | null;
+  AcademicProgress?: string | null;
+  LastMessage?: string | null;
+  ProfilePicture?: (number | null) | Media;
+  Gallery?: (number | null) | Gallery;
+  Milestones?: string | null;
+  ContributionsUsedFor?: string | null;
+  SponsorshipDuration?: number | null;
+  DonatedAmount?: number | null;
+  LastUpdate?: string | null;
+  Documents?:
+    | {
+        document?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
