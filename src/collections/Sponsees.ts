@@ -99,6 +99,13 @@ const Sponsees: CollectionConfig = {
         },
       ],
     },
+    {
+      name: 'Bio',
+      type: 'textarea',
+      admin: {
+        description: 'A brief biography of the sponsee',
+      },
+    },
   ],
 };
 

@@ -108,6 +108,7 @@ export interface Sponsee {
         id?: string | null;
       }[]
     | null;
+  Bio?: string | null;
   updatedAt: string;
   createdAt: string;
 }
