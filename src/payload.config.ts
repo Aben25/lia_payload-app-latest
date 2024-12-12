@@ -8,9 +8,15 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import Sponsees from './collections/Sponsees'
 import Sponsors from './collections/Sponsors'
+import GradeReports from './collections/GradeReports' 
 import { s3Storage } from '@payloadcms/storage-s3'
 import Gallery from './collections/Gallery'
 import slugify from 'slugify' // You might need to install this package: npm install slugify
+import Projects from './collections/Projects'
+import ProjectsStatus from './collections/ProjectsStatus'
+import Documents from './collections/Documents'
+import DonationCollection from './collections/DonationCollection'
+import DonationDistribution from './collections/DonationDistribution'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -35,7 +41,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Sponsees, Sponsors, Gallery],
+  collections: [Users, Media, Sponsees, Sponsors, Gallery, Projects, ProjectsStatus, Documents, DonationCollection, DonationDistribution],
   editor: lexicalEditor(),
   secret: '999a184aee931b24ea650729',
   typescript: {

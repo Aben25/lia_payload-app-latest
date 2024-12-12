@@ -16,6 +16,11 @@ export interface Config {
     sponsees: Sponsee;
     sponsors: Sponsor;
     gallery: Gallery;
+    projects: Project;
+    'projects-status': ProjectsStatus;
+    'grade-reports': GradeReport;
+    'donation-collection': DonationCollection;
+    'donation-distribution': DonationDistribution;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -93,22 +98,15 @@ export interface Sponsee {
   DateOfBirth?: string | null;
   Gender?: ('male' | 'female' | 'other') | null;
   Location?: string | null;
-  AcademicProgress?: string | null;
-  LastMessage?: string | null;
+  JoinedSponsorshipProgram?: string | null;
+  Grade?: number | null;
+  Education?: string | null;
+  Aspiration?: string | null;
+  Hobby?: string | null;
   ProfilePicture?: (number | null) | Media;
   Gallery?: (number | null) | Gallery;
-  Milestones?: string | null;
-  ContributionsUsedFor?: string | null;
-  SponsorshipDuration?: number | null;
-  DonatedAmount?: number | null;
-  LastUpdate?: string | null;
-  Documents?:
-    | {
-        document?: (number | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  Bio?: string | null;
+  About?: string | null;
+  HowSponsorshipWillHelp?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -142,9 +140,6 @@ export interface Sponsor {
   firstName: string;
   lastName: string;
   email?: string | null;
-  amount?: number | null;
-  firstPaymentDate?: string | null;
-  lastPaymentDate?: string | null;
   address?: string | null;
   city?: string | null;
   postalCode?: string | null;
@@ -152,6 +147,106 @@ export interface Sponsor {
   region?: string | null;
   phone?: string | null;
   sponsee?: (number | Sponsee)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  ProjectTitle: string;
+  ProjectType:
+    | 'Children and Youth Center'
+    | 'Feeding Program'
+    | 'Education and Mentorship'
+    | 'Electricity and Water Installation'
+    | 'Other';
+  Goal?: string | null;
+  Impact?: string | null;
+  ProjectProfilePicture?: (number | null) | Media;
+  Documents?:
+    | {
+        document?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects-status".
+ */
+export interface ProjectsStatus {
+  id: number;
+  ProjectTitle: number | Project;
+  Description: string;
+  Progress: 'Started' | 'In Progress' | 'Completed' | 'Other';
+  UpdatedBy?: string | null;
+  LastUpdatedDate?: string | null;
+  ProjectStatusProfilePicture?: (number | null) | Media;
+  Documents?:
+    | {
+        document?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "grade-reports".
+ */
+export interface GradeReport {
+  id: number;
+  ChildName: number | Sponsee;
+  AcademicYear: number;
+  Semester: '1' | '2';
+  MathsScore?: number | null;
+  AmharicScore?: number | null;
+  EnglishScore?: number | null;
+  ScienceScore?: number | null;
+  GamoScore?: number | null;
+  Rank: number;
+  AcademicProgressNote?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "donation-collection".
+ */
+export interface DonationCollection {
+  id: number;
+  SponsorName: number | Sponsor;
+  DonationAmount: number;
+  DonationType:
+    | 'Monthly Donation'
+    | 'Yearly Donation'
+    | 'Youth Center'
+    | 'Special Gift'
+    | 'General'
+    | 'Admin Cost Cover'
+    | 'Other';
+  Description?: string | null;
+  DonationDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "donation-distribution".
+ */
+export interface DonationDistribution {
+  id: number;
+  SponseeName: number | Sponsee;
+  DonationGivenAmount: number;
+  DistributionType: 'Monthly Donation' | 'Special Gift' | 'Medical' | 'Other';
+  Description?: string | null;
+  DonationGivenDate?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -181,6 +276,26 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'gallery';
         value: number | Gallery;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'projects-status';
+        value: number | ProjectsStatus;
+      } | null)
+    | ({
+        relationTo: 'grade-reports';
+        value: number | GradeReport;
+      } | null)
+    | ({
+        relationTo: 'donation-collection';
+        value: number | DonationCollection;
+      } | null)
+    | ({
+        relationTo: 'donation-distribution';
+        value: number | DonationDistribution;
       } | null);
   globalSlug?: string | null;
   user: {

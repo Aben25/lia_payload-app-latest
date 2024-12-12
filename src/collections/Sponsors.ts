@@ -19,20 +19,7 @@ const Sponsors: CollectionConfig = {
     {
       name: 'email',
       type: 'email',
-    },
-    {
-      name: 'amount',
-      type: 'number',
-    },
-    {
-      name: 'firstPaymentDate',
-      type: 'date',
-    },
-    {
-      name: 'lastPaymentDate',
-      type: 'date',
-    },
-   
+    },  
     {
       name: 'address',
       type: 'text',
