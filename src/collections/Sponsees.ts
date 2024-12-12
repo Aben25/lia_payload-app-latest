@@ -34,17 +34,29 @@ const Sponsees: CollectionConfig = {
       type: 'text',
     },
     {
-      name: 'AcademicProgress',
-      type: 'textarea',
-    },
-    {
-      name: 'LastMessage',
+      name: 'JoinedSponsorshipProgram',
       type: 'date',
       admin: {
         date: {
-          pickerAppearance: 'dayAndTime',
+          pickerAppearance: 'dayOnly',
         },
       },
+    },
+    {
+      name: 'Grade',
+      type: 'number',
+    },
+    {
+      name: 'Education',
+      type: 'text',
+    },
+    {
+      name: 'Aspiration',
+      type: 'text',
+    },
+    {
+      name: 'Hobby',
+      type: 'text',
     },
     {
       name: 'ProfilePicture',
@@ -57,55 +69,20 @@ const Sponsees: CollectionConfig = {
       relationTo: 'gallery',
     },
     {
-      name: 'Milestones',
-      type: 'textarea',
-    },
-    {
-      name: 'ContributionsUsedFor',
-      type: 'textarea',
-    },
-    {
-      name: 'SponsorshipDuration',
-      type: 'number',
-      admin: {
-        description: 'Duration in months',
-      },
-    },
-    {
-      name: 'DonatedAmount',
-      type: 'number',
-      admin: {
-        step: 0.01,
-        description: 'Total amount donated in USD',
-      },
-    },
-    {
-      name: 'LastUpdate',
-      type: 'date',
-      admin: {
-        date: {
-          pickerAppearance: 'dayAndTime',
-        },
-      },
-    },
-    {
-      name: 'Documents',
-      type: 'array',
-      fields: [
-        {
-          name: 'document',
-          type: 'upload',
-          relationTo: 'media',
-        },
-      ],
-    },
-    {
-      name: 'Bio',
+      name: 'About',
       type: 'textarea',
       admin: {
         description: 'A brief biography of the sponsee',
       },
     },
+    {
+      name: 'HowSponsorshipWillHelp',
+      type: 'textarea',
+      admin: {
+        description: 'A brief description how sponsorship helps the sponsee',
+      },
+    },
+
   ],
 };
 
