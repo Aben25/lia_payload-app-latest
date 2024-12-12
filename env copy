@@ -1,0 +1,10 @@
+# Added by Payload
+PAYLOAD_SECRET=999a184aee931b24ea650729
+DATABASE_URI=postgresql://postgres.qkehakucnmertrgjgqrk:gaI05l5WnZ9WunvW@aws-0-us-west-1.pooler.supabase.com:6543/postgres
+
+
+S3_BUCKET='Media'
+S3_ACCESS_KEY_ID='d11f3b537fa4f457db330072fb8322a2'
+S3_SECRET_ACCESS_KEY='f05dd7b36a33150e4e9037f4feea7babad070bc8e19320938285e8ec03fa3d79'
+S3_REGION='us-west-1'
+S3_ENDPOINT='https://qkehakucnmertrgjgqrk.supabase.co/storage/v1/s3'
