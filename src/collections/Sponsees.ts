@@ -43,6 +43,13 @@ const Sponsees: CollectionConfig = {
       },
     },
     {
+      name: 'Family',
+      type: 'textarea',
+      admin: {
+        description: 'A brief description of family situtation',
+      },
+    },
+    {
       name: 'Grade',
       type: 'number',
     },
