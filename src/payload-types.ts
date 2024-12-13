@@ -99,6 +99,7 @@ export interface Sponsee {
   Gender?: ('male' | 'female' | 'other') | null;
   Location?: string | null;
   JoinedSponsorshipProgram?: string | null;
+  Family?: string | null;
   Grade?: number | null;
   Education?: string | null;
   Aspiration?: string | null;
