@@ -41,7 +41,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Sponsees, Sponsors, Gallery, Projects, ProjectsStatus, Documents, DonationCollection, DonationDistribution],
+  collections: [Users, Media, Sponsees, Sponsors, Gallery, Projects, ProjectsStatus, Documents, DonationCollection, DonationDistribution, GradeReports],
   editor: lexicalEditor(),
   secret: '999a184aee931b24ea650729',
   typescript: {
