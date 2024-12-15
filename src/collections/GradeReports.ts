@@ -14,6 +14,11 @@ const GradeReports: CollectionConfig = {
       required: true
     },
     {
+      name: 'Grade',
+      type: 'number',
+      required: true,
+    },
+    {
       name: 'AcademicYear',
       type: 'number',
       required: true,

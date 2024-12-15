@@ -18,9 +18,10 @@ export interface Config {
     gallery: Gallery;
     projects: Project;
     'projects-status': ProjectsStatus;
-    'grade-reports': GradeReport;
+    documents: Document;
     'donation-collection': DonationCollection;
     'donation-distribution': DonationDistribution;
+    'grade-reports': GradeReport;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -199,20 +200,21 @@ export interface ProjectsStatus {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "grade-reports".
+ * via the `definition` "documents".
  */
-export interface GradeReport {
+export interface Document {
   id: number;
   ChildName: number | Sponsee;
-  AcademicYear: number;
-  Semester: '1' | '2';
-  MathsScore?: number | null;
+  UploadedDate?: string | null;
+  DocumentsType: 'Education' | 'Medical' | 'LIA Related Forms' | 'Other';
+  Description?: string | null;
   AmharicScore?: number | null;
-  EnglishScore?: number | null;
-  ScienceScore?: number | null;
-  GamoScore?: number | null;
-  Rank: number;
-  AcademicProgressNote?: string | null;
+  Documents?:
+    | {
+        document?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -253,6 +255,26 @@ export interface DonationDistribution {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "grade-reports".
+ */
+export interface GradeReport {
+  id: number;
+  ChildName: number | Sponsee;
+  Grade: number;
+  AcademicYear: number;
+  Semester: '1' | '2';
+  MathsScore?: number | null;
+  AmharicScore?: number | null;
+  EnglishScore?: number | null;
+  ScienceScore?: number | null;
+  GamoScore?: number | null;
+  Rank: number;
+  AcademicProgressNote?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -287,8 +309,8 @@ export interface PayloadLockedDocument {
         value: number | ProjectsStatus;
       } | null)
     | ({
-        relationTo: 'grade-reports';
-        value: number | GradeReport;
+        relationTo: 'documents';
+        value: number | Document;
       } | null)
     | ({
         relationTo: 'donation-collection';
@@ -297,6 +319,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'donation-distribution';
         value: number | DonationDistribution;
+      } | null)
+    | ({
+        relationTo: 'grade-reports';
+        value: number | GradeReport;
       } | null);
   globalSlug?: string | null;
   user: {
